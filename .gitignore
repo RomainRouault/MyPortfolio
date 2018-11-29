@@ -1,0 +1,11 @@
+.DS_Store
+node_modules
+npm-debug.log
+bower_components
+dist
+safe-js
+img travail
+src/assets/fonts
+*.swp
+.cache
+.idea

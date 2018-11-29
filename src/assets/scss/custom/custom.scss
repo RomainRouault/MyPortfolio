@@ -1,0 +1,276 @@
+//  Custom SCSS
+//  -----------------------------
+//
+//  Table of Contents:
+//
+//   1. Global
+//   2. Header
+//   3. 
+//   4. 
+//   5. 
+//   6. 
+
+// 1. Global
+// ---------
+
+.align-center{
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+h1{
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+h2{
+    text-transform: uppercase;
+
+}
+
+// 2. Header
+// ---------
+
+$sticky-shrinknav-menu-height: rem-calc(50);
+$sticky-shrinknav-hero-height: 300px;
+
+body {
+  padding-top: $sticky-shrinknav-hero-height + 30px;
+}
+
+#hexa-ext, #hexa-ext-small
+{
+  fill: $secondary-color;
+  transition: all 0.3s ease;
+}
+
+#hexa-int, #hexa-int-small
+{
+    fill: $primary-color;
+    transform: rotate(0deg);
+    transform-origin: center;
+    transition: all 3s ease;
+    
+    &.theyseemerollin{
+    transform: rotate(720deg);
+    transform-origin: center;
+    transition: all 5s ease;
+    }
+}
+
+#hexa-int{
+  fill: $primary-color;
+}
+
+.sticky-shrinknav-menu {
+  @include horizontal-center;
+  bottom: 0;
+  height: $sticky-shrinknav-menu-height;
+  line-height: $sticky-shrinknav-menu-height;
+  width: 100%;
+  transition: all 0.5s ease;
+  padding-top: 5px;
+  padding-right: 120px;
+  text-transform: uppercase;
+
+
+  li {
+      transition: all 0.3s ease;
+
+    &#logo.hero{
+      transform: translateX(90px) translateY(-135px) scale(2.5);
+      transition: all 0.5s ease;
+    }
+
+    &#logo:hover #hexa-ext{
+    fill: $mypurple;
+    transition: all 0.3s ease;
+  }
+
+
+    &#logo a{
+    padding-top: 0px;
+    }
+    
+  }
+
+  a {
+    color: $secondary-color;
+    transition: all 0.3s ease;
+
+    &:hover{
+      color: $mypurple;
+    }
+  }
+}
+
+
+.sticky-shrinknav-header-title {
+  transition: all 0.3s ease;
+  position: relative;
+  transform: translateY(-$sticky-shrinknav-menu-height/2);
+  margin-bottom: 0;
+  color: $secondary-color;
+}
+
+
+.sticky-shrinknav-header {
+  width: 100%;
+  height: $sticky-shrinknav-hero-height;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $primary-color;
+  text-align: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  transition: all 0.5s ease;
+}
+
+//active class when header is shrinked
+body.sticky-shrinknav-wrapper {
+  padding-top: 130px;
+
+  .sticky-shrinknav-header{
+    height: $sticky-shrinknav-menu-height;
+    background-color: rgba($primary-color, 0.97);
+
+    .sticky-shrinknav-header-title{
+      transform: scale(0);
+      transition: all 0.3s ease;
+    }
+  }
+  
+}
+
+body .sticky-shrinknav-header.hide-nav{
+  height: 0px;
+}
+
+body .sticky-shrinknav-header.show-nav{
+  height: $sticky-shrinknav-menu-height;
+}
+
+
+.sticky-shrinknav-header-title-wrapper {
+  flex-direction: column;
+  display: flex;
+  align-items: flex-start;
+  padding-right: 60px;
+  transition : all 0.1s linear;
+  opacity: 1;
+}
+
+// small devices
+
+#top-header-small-device{
+  width: 100%;
+
+  .logo{
+    text-align : left;
+  }
+
+  .button-small-device
+  {
+
+    text-align: right;
+    padding-top: 4px;
+    transition: all 0.2s ease;
+
+    button.menu-icon
+    {
+      width: 29px;
+
+      &.active
+      {
+        
+        //hide hamburger if active
+        &::after
+        {
+          opacity: 0;
+          transform: scale(0);
+          transition: all 0.2s ease;
+        }
+        
+        //show close button
+        #close-button>svg>path
+        {
+          opacity: 1;
+          transform: scale(1);
+          transition: all 0.2s ease;
+        }
+
+      }
+
+    }
+
+    //hamburger icon
+    ::after
+    {
+      height: 4px;
+      background: $secondary-color;
+      -webkit-box-shadow: 0 8px 0 $secondary-color, 0 16px 0 $secondary-color;
+      box-shadow: 0 8px 0 $secondary-color, 0 16px 0 $secondary-color;
+      transition: all 0.2s ease;
+    }
+
+    //cross - fa icon
+    #close-button>svg>path
+    {
+      stroke : $secondary-color;
+      opacity: 0;
+      transform: scale(0);
+      transition: all 0.2s ease;
+    }
+
+  }
+
+}
+
+.toggled{
+  transition : all 0.2s ease;
+  opacity: 0;
+}
+
+@include breakpoint(small only) {
+
+  .sticky-shrinknav-header{
+  align-items: flex-start;
+  }
+
+  #top-header-small-device{
+  padding: rem-calc(20 30);
+  }
+
+  .sticky-shrinknav-header-title-wrapper{
+    padding : rem-calc(0 50);
+    align-items: center;
+  }
+
+  .sticky-shrinknav-menu{
+    height: auto;
+    padding: rem-calc(0 0 25 0);
+  }
+
+  //active class when header is shrinked 
+  body.sticky-shrinknav-wrapper {
+
+    //height of menu when is shrinked
+    .sticky-shrinknav-header{
+      height: $sticky-shrinknav-menu-height+rem-calc(22);
+    }
+
+    //height of menu when is active
+    .sticky-shrinknav-header.toggled-menu{
+      height: $sticky-shrinknav-hero-height;
+    }
+
+
+  }    
+
+
+}
+
