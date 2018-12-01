@@ -22,7 +22,7 @@ $(function() {
   .scroll(function() {
     //
     var scroll = $(window).scrollTop();
-    if (scroll > position && scroll >= 350) {
+    if (scroll > position && scroll >=50) {
       $(".sticky-shrinknav-header").addClass("hide-nav");
       $("#hexa-int").removeClass("theyseemerollin");
     } else{
@@ -46,13 +46,5 @@ $(function() {
 	$(".menu-icon.active").click(function(){
 		$("body").addClass("sticky-shrinknav-wrapper");
 	});
-
-
-	//hide hero if url load with ash (anchor)
-	if (window.location.hash){
-		$(".sticky-shrinknav-header").addClass("hide-nav");
-	}
-
-
 
 });

@@ -147,7 +147,7 @@ body.sticky-shrinknav-wrapper {
 }
 
 body .sticky-shrinknav-header.hide-nav{
-  height: 0px;
+  height: 0px !important;
 }
 
 body .sticky-shrinknav-header.show-nav{
