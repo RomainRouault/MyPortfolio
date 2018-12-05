@@ -22,7 +22,7 @@ $(function() {
   .scroll(function() {
     //
     var scroll = $(window).scrollTop();
-    if (scroll > position && scroll >=50) {
+    if (scroll > position && scroll >=30) {
       $(".sticky-shrinknav-header").addClass("hide-nav");
       $("#hexa-int").removeClass("theyseemerollin");
     } else{

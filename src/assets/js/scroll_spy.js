@@ -5,13 +5,9 @@ $(function() {
       header = $(".sticky-shrinknav-header"),
       //body
       body =  $('body'),
-      initialBodyHeight = body.outerHeight(),
       //sticky menu dekstop
       stickyMenu = $(".sticky-shrinknav-menu"),
       stickyMenuHeight = stickyMenu.outerHeight(),
-      //sticky menu small device
-      mobileStickyMenu = $("#top-header-small-device"),
-      mobileStickyMenuHeight = mobileStickyMenu.outerHeight(),
       // All list items
       menuItems = header.find("a"),
       //Anchors of the menu
@@ -28,18 +24,17 @@ $(function() {
   // Bind click handler to menu items
   // so we can get a fancy scroll animation
   menuItems.click(function(e){
-
     //get current height on click
     headerHeight = header.outerHeight();
-    //get current height of the body
-    currentBodyHeight = body.outerHeight();
+    //get current scroll
+    var scroll = $(window).scrollTop();
 
 
     //if the hero header is show/we are at the top of the page on large device
     if (headerHeight > stickyMenuHeight && stickyMenu.is(":visible"))
     {
-      //subtract the total height of the menu (twice : at top page and after scroll)
-      headerHeight = headerHeight-(stickyMenuHeight*2);
+      //200 = the height lost by the body when header shrinked
+      headerHeight = 200;
     }
 
     //if we are on a small device 
@@ -48,27 +43,35 @@ $(function() {
       //toggle the menu after click on an item menu
       $(".menu-icon").click();
 
-      //if we are at the top of the page
-      if(currentBodyHeight == initialBodyHeight)
+      //if we are not at the top of the page
+      if(scroll >= 50)
       {
-          // 200 = the height lost by the body when top header is shriking
-          headerHeight = 200;
-      }
-      //we are not at the top
-      else{
-        // just substract the height of the sticky menu
-        headerHeight = mobileStickyMenuHeight-10;
+          headerHeight = 0;
       }
     }
 
+
+
     var href = $(this).attr("href");
 
-    //get the offset of the element and calcul with
-    var href = $(this).attr("href"),
-        offsetTop = href === "#" ? 0 : $(href).offset().top-headerHeight+1;
-    $('html, body').stop().animate({ 
-        scrollTop: offsetTop
-    }, 300);
+    //get the offset of the element calcul 
+      var href = $(this).attr("href"),
+      offsetTop = href === "#" ? 0 : $(href).offset().top;
+      //if the offset is below the menu after header had shrinked, so show the menu lower
+      if (offsetTop > scroll && scroll > 50)
+      {
+        console.log("coucou");
+        var offsetTopFinal = offsetTop+headerHeight-1;
+      }
+      else
+      {
+        var offsetTopFinal = offsetTop-headerHeight+1;
+      }
+      //smooth scroll
+      $('html, body').stop().animate({ 
+          scrollTop: offsetTopFinal
+      }, 500);
+
     e.preventDefault();
   });
 
@@ -90,10 +93,16 @@ $(function() {
      
      if (lastId !== id) {
          lastId = id;
-         // Set/remove active class
+         // Set/remove active class to menu items
          menuItems
            .parent().removeClass("active")
            .end().filter("[href='#"+id+"']").parent().addClass("active");
+        // Set/remove active class to body section
+        $('section').removeClass("active");
+        if (id)
+        {
+          $("#"+id).addClass("active");
+        }
      }                   
   });
 
@@ -102,7 +111,6 @@ $(function() {
     queryHash = window.location.hash;
     if ($.inArray(queryHash, anchorsMenuItems) !== -1)
     {
-      console.log('oui!');
       $(".sticky-shrinknav-header").addClass("hide-nav");
     }
   }

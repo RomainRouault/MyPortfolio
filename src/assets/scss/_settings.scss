@@ -82,7 +82,7 @@ $dark-gray: #8a8a8a;
 $black: #0a0a0a;
 $white: #fefefe;
 $body-background: $white;
-$body-font-color: $black;
+$body-font-color: #304153;
 $body-font-family: LiberationSans, LiberationSans-Regular, 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
 $bold-font: LiberationSans-Bold, LiberationSans, 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
 $body-antialiased: true;
@@ -144,7 +144,7 @@ $header-styles: (
   small: (
     'h1': ('font-size': 34),
     'h2': ('font-size': 21),
-    'h3': ('font-size': 19),
+    'h3': ('font-size': 21),
     'h4': ('font-size': 18),
     'h5': ('font-size': 17),
     'h6': ('font-size': 16),
@@ -152,7 +152,7 @@ $header-styles: (
   medium: (
     'h1': ('font-size': 42),
     'h2': ('font-size': 28),
-    'h3': ('font-size': 31),
+    'h3': ('font-size': 28),
     'h4': ('font-size': 25),
     'h5': ('font-size': 20),
     'h6': ('font-size': 16),
@@ -179,10 +179,10 @@ $hr-border: 1px solid $medium-gray;
 $hr-margin: rem-calc(20) auto;
 $list-lineheight: $paragraph-lineheight;
 $list-margin-bottom: $paragraph-margin-bottom;
-$list-style-type: disc;
-$list-style-position: outside;
-$list-side-margin: 1.25rem;
-$list-nested-side-margin: 1.25rem;
+$list-style-type: square;
+$list-style-position: inside;
+$list-side-margin: 0rem;
+$list-nested-side-margin: 0rem;
 $defnlist-margin-bottom: 1rem;
 $defnlist-term-weight: $global-weight-bold;
 $defnlist-term-margin-bottom: 0.3rem;
