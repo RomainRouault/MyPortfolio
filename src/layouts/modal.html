@@ -1,0 +1,19 @@
+<nav class="close-top text-center">
+	<button class="close-button" data-close aria-label="Close reveal" type="button">
+		<span aria-hidden="true">&times;</span>
+	</button>
+</nav>
+
+<div class="grid-container">
+	<div class="grid-x">
+		{{> body}}
+	</div>
+</div>
+
+<nav class="close-bottom text-center">
+	<button class="close-button button" data-close aria-label="Close reveal" type="button">Retour</button>
+</nav>
+
+<script src="{{root}}assets/js/jquery-3.3.1.min.js"></script>
+<script src="{{root}}assets/js/foundation.min.js"></script>
+<script>$(document).foundation();</script>
