@@ -10,7 +10,7 @@
 //     3.2 Technology
 //     3.3 Portfolio
 //     3.4 Education
-//   4. Footer
+//   4. Contact
 //   5. Modal
 
 @import 'myMixin'; 
@@ -44,6 +44,12 @@ h3{
     :hover{
       color : $mypurple;
     }
+}
+
+.accordion-title::before{
+  right : unset;
+  left: 1rem;
+  margin-top: rem-calc(-5);
 }
 //------------------------------------------------------------------------------------------------------------------------------
 // 2. Header
@@ -89,7 +95,7 @@ body {
   transition: all 0.3s ease;
   padding-top: rem-calc(5);
   text-transform: uppercase;
-  z-index: 9999;
+  z-index: 100;
 
 
   li {
@@ -145,6 +151,7 @@ body {
   left: 0;
   overflow: hidden;
   transition: all 0.3s ease;
+  z-index: 100;
 }
 
 //active class when header is shrinked
@@ -316,7 +323,6 @@ section{
       h3{
         transition: all 1s ease; 
         position: relative;
-        z-index: -1;
 
           &::after{
           content: '';
@@ -324,7 +330,6 @@ section{
           position: absolute;
           top: 1; right: 0; bottom: 0; left: 0;
           margin: -2px;
-          z-index: -1;
           transition: width 0.3s ease;
           width: 0%;
           height: 2px;
@@ -393,7 +398,6 @@ section{
         p{
           transform : translateX(rem-calc(20));
           transition: all 0.7s ease;
-          z-index: -1;
         }
       }
     }
@@ -407,14 +411,12 @@ section{
 #technology
 {
   position: relative;
-  z-index: -1;
 
   &::after{
     content: '';
     display: block;
     position: absolute;
     top: 0; right: 0; bottom: 0; left: 1;
-    z-index: -1;
     transition: height 0.3s ease;
     width: 2px;
     height: 0%;
@@ -426,7 +428,6 @@ section{
     display: block;
     position: absolute;
     top: 0; right: 1; bottom: 0; left: 0;
-    z-index: -1;
     transition: height 0.3s ease;
     width: 2px;
     height: 0%;
@@ -486,7 +487,6 @@ section{
     .tech-list-content{
       transform : translateY(20px);
       transition: all 0.7s ease;
-      z-index : -1; 
     }
 
   }
@@ -500,7 +500,6 @@ section{
 {
   background-color: $secondary-color;
   position: relative;
-  //z-index: -9999;
 }
   
 #portfolio{
@@ -513,11 +512,11 @@ section{
     display: block;
     position: absolute;
     top: 14%; right: 50%; bottom: 0; left: 50%;
-    z-index: -1;
     transition: height 0.3s ease;
-    width: 2px;
+    width: 3px;
     height: 0%;
     background-color: $mypurple;
+    z-index: -1;
   }
 
   &.more-content::after{
@@ -573,7 +572,6 @@ section{
   }
 
   h3{
-    z-index : -1;
     color : $white;
   }
 
@@ -655,7 +653,7 @@ section{
 
           &:hover p {
             opacity: 1;
-            transform: translateY(-100%);
+            transform: translateY(-135%);
             transition: $image-hover-wrapper-transition;
             transition-delay: $image-hover-wrapper-transition-delay;
           }
@@ -688,6 +686,213 @@ section{
 }
 
 // 3.4 education
+
+#education{
+
+  $timeline-color: $secondary-color;
+  $timeline-transition: all 0.3s ease;
+  $timeline-item-card-bg: $secondary-color;
+  $timeline-item-font-color: $secondary-color;
+  $timeline-item-card: false;
+  $timeline-item-card-radius: $global-radius;
+
+  %clearfix {
+    &::after,
+    &::before {
+      clear: both;
+      content: '';
+      display: block;
+      width: 100%;
+    }
+  }
+
+
+  // Timeline
+  .timeline {
+    margin: 30px auto;
+    padding: 0 10px;
+    position: relative;
+    transition: $timeline-transition;
+    transition-delay: 1s !important;
+    width: 100%;
+    z-index: 2;
+
+    &::before {
+      background: $timeline-color;
+      content: '';
+      height: 0%;
+      left: 50%;
+      position: absolute;
+      top: 0;
+      width: 3px;
+      transition : color 0.3s ease, height 1s ease;
+      z-index: 1;
+    }
+
+
+    &::after {
+      clear: both;
+      content: '';
+      display: table;
+      width: 100%;
+    }
+
+    a {
+      color: $timeline-item-font-color;
+      font-weight: bold;
+      transition: $timeline-transition;
+
+      &:hover {
+        box-shadow: 0 1px 0px 0px $timeline-item-font-color;
+        transition: $timeline-transition;
+      }
+    }
+
+    .timeline-item {
+      margin-bottom: 50px;
+      position: relative;
+      z-index: 1;
+      @extend %clearfix;
+
+      .timeline-icon {
+        
+        left: 50%;
+        margin-left: rem-calc(-30);
+        overflow: hidden;
+        position: absolute;
+        top: 0;
+        z-index: -2;
+
+        i {
+          @include hexa-icon('blue');
+          z-index: -1;
+          padding : rem-calc(20);
+          font-size: rem-calc(25);
+          color : $white;
+        }
+
+      }
+
+      .timeline-content {
+        padding: 20px;
+        text-align: right;
+        transition: $timeline-transition;
+        width: 45%;
+
+        @if $timeline-item-card == true {
+          background: $timeline-item-card-bg;
+          border-radius: $timeline-item-card-radius;
+
+          p {
+            color: $black;
+          }
+        } @else {
+          background: transparent;
+
+          p {
+            color: $timeline-item-font-color;
+          }
+        }
+
+        p {
+          font-size: 16px;
+          line-height: 1.4;
+          margin-bottom: 0;
+        }
+
+        .timeline-content-date {
+          font-size: 16px;
+          font-weight: bold;
+          margin-bottom: 0;
+        }
+
+        .timeline-content-month {
+          font-size: rem-calc(14);
+          text-transform: uppercase;
+          font-weight: 400;
+        }
+
+        &.right {
+          float: right;
+          text-align: left;
+        }
+      }
+    }
+
+    .accordion{
+      margin-top: rem-calc(10);
+
+      a{
+        font-weight: normal;
+
+        i:hover{
+          box-shadow: unset;
+          color: $mypurple;
+          transition: $timeline-transition;
+        }
+      }
+
+      i{
+        margin-left: rem-calc(10);
+        transition: $timeline-transition;
+      }
+
+      li > a:nth-child(2){
+        box-shadow: unset;
+      }
+    }
+  }
+
+  &.active{
+
+    .timeline{
+
+      &::before {
+        height : 100%;
+        background: $mypurple;
+        transition : color 0.3s ease, height 4s ease;
+      }
+
+      .timeline-icon i{
+        @include hexa-icon('purple');
+      }
+    }
+
+  }
+
+
+  @include breakpoint(small only) {
+    .timeline {
+      margin: 30px;
+      padding: 0;
+      width: 90%;
+
+      &::before {
+        left: 0;
+      }
+
+      .timeline-item {
+        .timeline-content {
+          float: right;
+          text-align: left;
+          width: 90%;
+
+          &::before,
+          &.right::before {
+            border-left: 0;
+            border-right: 7px solid $timeline-color;
+            left: 10%;
+            margin-left: -6px;
+          }
+        }
+
+        .timeline-icon {
+          left: 0;
+        }
+      }
+    }
+  }
+}
 
 //------------------------------------------------------------------------------------------------------------------------------
 // 5. Modal
@@ -765,7 +970,6 @@ section{
   h4{
     margin-bottom: rem-calc(25);
     position: relative;
-    z-index: -1;
 
       &::after{
       content: '';
@@ -773,7 +977,6 @@ section{
       position: absolute;
       top: 1; right: -50%; bottom: 0; left: -50%;
       margin: auto;
-      z-index: -1;
       transition: width 0.3s ease;
       width: 150%;
       height: 2px;
