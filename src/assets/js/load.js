@@ -18,7 +18,7 @@ $(document).ready(function(){
 	});
 
 	//modal in full width (project)
-	$('.project-details').click(function(event){
+	$('.project-details').click(function(){
 		var $modal = $('#project-details'),
 		//get name of the file to load from id of the element
 		$contentIdName = this.id,
@@ -26,6 +26,22 @@ $(document).ready(function(){
 		$contentName = $splitContentName[0];
 
 		$.ajax('project/'+$contentName+'.html')
+		  .done(function(resp){
+		    $modal.html(resp);
+		    $modal.trigger('resizeme.zf.reveal');
+		});
+
+	});
+
+	//modal in full width (mentions_legales)
+	$('.mentions-link').click(function(event){
+		var $modal = $('#project-details'),
+		//get name of the file to load from id of the element
+		$contentIdName = this.id,
+		$splitContentName = $contentIdName.split("-"),
+		$contentName = $splitContentName[0];
+
+		$.ajax($contentName+'.html')
 		  .done(function(resp){
 		    $modal.html(resp).foundation('open');
 		});

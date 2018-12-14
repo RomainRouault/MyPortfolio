@@ -25,6 +25,12 @@
   justify-content: center;
 }
 
+.hide {
+   position: absolute !important;
+   top: -9999px !important;
+   left: -9999px !important;
+}
+
 h1, h3{
   font-weight: bold;
 }
@@ -293,7 +299,6 @@ body .sticky-shrinknav-header.show-nav{
       height: $sticky-shrinknav-hero-height;
     }
 
-
   }    
 
 }
@@ -334,6 +339,7 @@ section{
           width: 0%;
           height: 2px;
           background-color: $mypurple;
+          transition-delay: 0.5s !important;
           }
 
       }
@@ -352,7 +358,7 @@ section{
 
       &::after{
         width: 100%;
-        transition-delay: 2s;
+        transition-delay: 0.4s !important;
         transition: width 0.7s ease;
       }
     }
@@ -364,10 +370,19 @@ section{
 
 #about{
 
-  img{
-    border-right : 7px solid $secondary-color;
-    border-bottom : 7px solid $secondary-color;
-    transition: all 1s ease;
+  .photo{
+
+
+    img{
+      border-right : 7px solid $secondary-color;
+      border-bottom : 7px solid $secondary-color;
+      transition: all 1s ease;
+      object-fit: cover;
+      object-position: -0% 0;
+      width: 300px;
+      height: 300px;
+    }
+
   }
 
   .text{
@@ -375,7 +390,8 @@ section{
     border-top : 2px solid $secondary-color;
 
       p{
-        padding : rem-calc(20 0);
+        padding : rem-calc(20);
+        transform : translateX(rem-calc(20));
         transition: all 0.7s ease;
       }
   }
@@ -394,14 +410,67 @@ section{
       transition: all 0.7s ease;
       
       
-      @include breakpoint(medium) {
-        p{
-          transform : translateX(rem-calc(20));
-          transition: all 0.7s ease;
-        }
+      p{
+        transform : translateX(rem-calc(0));
+        transition: all 0.7s ease;
+        transition-delay: 0.3s !important;
       }
     }
 
+  }
+
+  @include breakpoint(small only) {
+      
+    .photo{
+
+      text-align: center;
+
+      img{
+        margin: rem-calc(0 25);
+        border-bottom: 0;
+        border-left: 7px solid $secondary-color;
+        transition: all 0.7s ease;;
+      }
+    }
+
+    .text{
+      margin-top: rem-calc(25);
+
+      p{
+        padding: rem-calc(25);
+        margin-bottom: 0;
+        
+      }
+    }
+
+    &.active{
+
+      img{
+      border-left: 7px solid $mypurple;
+      transition: all 0.7s ease;
+      }
+
+    }
+  }
+
+  @media screen and (min-width: 675px) and (max-width: 819px){
+    .photo img{
+      width: 600px;
+      height: 400px;
+    }
+  }
+
+ @media screen and (min-width: 525px) and (max-width: 675px){
+    .photo img{
+      width: 450px;
+      height: 300px;
+    }
+  }
+@media screen and (max-width: 374px){
+    .photo img{
+      width: 225px;
+      height: 250px;
+    }
   }
 
 }
@@ -528,18 +597,25 @@ section{
 
     &::after{
       height: 85%;
-      transition-delay: 3s;
-      transition: height 2s ease;
+      transition-delay: 1s !important;
+      transition: height 3s ease;
     }
 
     &.more-content::after{
       height : 90%;
     }
+    
+    @include breakpoint(small only) {
+  
+      &::after, &.more-content::after{
+        height: 0%
+      }
+    }
 
 
     .button{
       border-color: $mypurple;
-      transition-delay: 1s !important;
+      transition-delay: 2.2s !important;
       transition : all 2s ease;
     }
   
@@ -567,7 +643,16 @@ section{
         transition : all 1s ease;
       }
 
+      @include breakpoint(small only) {
+
+        &.right-border, &.left-border{
+          border-left-color: $mypurple;
+          border-right-color: $mypurple;
+        }
+      }
+
     }
+
 
   }
 
@@ -606,6 +691,15 @@ section{
     &.right-border, &.left-border, &.bottom-border, &.top-border{
       transition : all 1s ease;
     }
+
+    @include breakpoint(small only) {
+
+      &.right-border, &.left-border{
+        border-left: solid 7px $primary-color;
+        border-right: solid 7px $primary-color;
+      }
+    }
+
 
     .screen-project-wrapper{
       border: 8px solid black;
@@ -778,6 +872,7 @@ section{
         text-align: right;
         transition: $timeline-transition;
         width: 45%;
+        transform: translateX(rem-calc(-20));
 
         @if $timeline-item-card == true {
           background: $timeline-item-card-bg;
@@ -815,6 +910,8 @@ section{
         &.right {
           float: right;
           text-align: left;
+          transform: translateX(rem-calc(20));
+
         }
       }
     }
@@ -848,14 +945,33 @@ section{
     .timeline{
 
       &::before {
-        height : 100%;
+        height : 110%;
         background: $mypurple;
         transition : color 0.3s ease, height 4s ease;
+      }
+      
+      @include breakpoint(small only) {
+
+        &::before {
+        height : 105%;
+        }
+
       }
 
       .timeline-icon i{
         @include hexa-icon('purple');
       }
+
+      .timeline-item .timeline-content{
+        transition: $timeline-transition;
+        transform: translateX(rem-calc(0));
+
+         &.right {
+          transition: $timeline-transition;
+          transform: translateX(rem-calc(0));
+         }
+      }
+
     }
 
   }
@@ -866,6 +982,7 @@ section{
       margin: 30px;
       padding: 0;
       width: 90%;
+      
 
       &::before {
         left: 0;
@@ -876,6 +993,7 @@ section{
           float: right;
           text-align: left;
           width: 90%;
+          transform: translateX(rem-calc(10));
 
           &::before,
           &.right::before {
@@ -890,10 +1008,85 @@ section{
           left: 0;
         }
       }
+
+      .accordion .accordion-title::before {
+        right: 1px;
+        left: unset;
+        padding-right: rem-calc(15);
+      }
+
     }
   }
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
+// 4. Contact
+// ---------
+
+#contact-container
+{
+  background-color: $secondary-color;
+  position: relative;
+}
+
+#contact{
+  z-index: 1;
+  position: relative;
+  color : $white;
+  padding-bottom: rem-calc(10);
+
+  h3{
+      color : $white;
+    }
+  #contact-icons{
+    font-size: rem-calc(40);
+
+    li{
+      
+      transform: translateY(rem-calc(20));
+      transition: transform 0.4s ease;
+
+      i{
+        color : $secondary-color;
+        @include hexa-icon('white');
+        padding : rem-calc(30);
+        transition: color 0.3s ease;
+
+        &:hover{
+          color : $mypurple;
+          transition: color 0.3s ease;
+        }
+      }
+    }
+
+  }
+
+  aside{
+    font-size: rem-calc(9);
+    margin-top: rem-calc(80);
+  }
+  
+  &.active{
+    #contact-icons{
+      li{
+          transform: translateY(rem-calc(0));
+          transition: transform 0.3s ease;
+
+        &:nth-child(2){
+          transition-delay: 0.3s !important;
+        }
+        &:nth-child(3){
+          transition-delay: 0.6s !important;
+        }
+
+        &:nth-child(4){
+          transition-delay: 0.9S !important;
+        }
+      }
+
+    }
+  }
+}
 //------------------------------------------------------------------------------------------------------------------------------
 // 5. Modal
 // ---------
@@ -910,7 +1103,7 @@ section{
 
   @include breakpoint(small only) {
     .orbit-container{
-      min-height: unset;
+      min-height: 150px;
     }
   }
 

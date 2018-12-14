@@ -6,6 +6,7 @@ dist
 safe-js
 img travail
 src/assets/fonts
+src/assets/img/romain-rouault.png
 *.swp
 .cache
 .idea

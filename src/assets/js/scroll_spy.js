@@ -60,7 +60,6 @@ $(function() {
       //if the offset is below the menu after header had shrinked, so show the menu lower
       if (offsetTop > scroll && scroll > 50)
       {
-        console.log("coucou");
         var offsetTopFinal = offsetTop+headerHeight-1;
       }
       else
@@ -103,6 +102,10 @@ $(function() {
         {
           $("#"+id).addClass("active");
         }
+     }
+     //detect bottom of the page and add "active" state to last section element
+     if($(window).scrollTop() + $(window).height() == $(document).height()) {
+        $('#contact').addClass("active");
      }                   
   });
 
