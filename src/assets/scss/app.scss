@@ -66,18 +66,18 @@
 // Import fonts family
 @font-face {
   font-family: 'LiberationSans-Regular';
-  src: url('LiberationSans-Regular.eot');
-  src: url('LiberationSans-Regular.woff2') format('woff2'),
-       url('LiberationSans-Regular.eot?#iefix') format('embedded-opentype');
+  src: url('../fonts/LiberationSans-Regular.eot');
+  src: url('../fonts/LiberationSans-Regular.woff2') format('woff2'),
+       url('../fonts/LiberationSans-Regular.eot?#iefix') format('embedded-opentype');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'LiberationSans';
-  src: url('LiberationSans.woff') format('woff'),
-       url('LiberationSans.ttf') format('truetype'),
-       url('LiberationSans.svg#LiberationSans') format('svg');
+  src: url('../fonts/LiberationSans.woff') format('woff'),
+       url('../fonts/LiberationSans.ttf') format('truetype'),
+       url('../fonts/LiberationSans.svg#LiberationSans') format('svg');
   font-weight: normal;
   font-style: normal;
 }

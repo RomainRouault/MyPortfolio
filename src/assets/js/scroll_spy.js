@@ -104,9 +104,10 @@ $(function() {
         }
      }
      //detect bottom of the page and add "active" state to last section element
-     if($(window).scrollTop() + $(window).height() == $(document).height()) {
+     if($(window).scrollTop() + $(window).height() + 100 >= $(document).height()) {
         $('#contact').addClass("active");
-     }                   
+     }
+   
   });
 
   //hide hero if url load with ash (anchor)

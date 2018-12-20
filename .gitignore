@@ -10,3 +10,5 @@ src/assets/img/romain-rouault.png
 *.swp
 .cache
 .idea
+.htaccess
+*.jpg
