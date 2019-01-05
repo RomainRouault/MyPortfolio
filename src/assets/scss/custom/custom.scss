@@ -520,7 +520,7 @@ section{
 
 
   .hexa{
-     @include hexa-icon('blue');
+     @include hexa-icon('23304153');//blue
   }
 
   ul#tech-cat{
@@ -564,7 +564,7 @@ section{
       }
 
     .hexa{
-      @include hexa-icon('purple');
+      @include hexa-icon('2381718a');//purple
     }
 
     .tech-list-content{
@@ -877,7 +877,7 @@ section{
         z-index: -2;
 
         i {
-          @include hexa-icon('blue');
+          @include hexa-icon('23304153'); //blue
           z-index: -1;
           padding : rem-calc(20);
           font-size: rem-calc(25);
@@ -978,7 +978,7 @@ section{
       }
 
       .timeline-icon i{
-        @include hexa-icon('purple');
+        @include hexa-icon('2381718a');//purple
       }
 
       .timeline-item .timeline-content{
@@ -1067,7 +1067,7 @@ section{
 
       i{
         color : $secondary-color;
-        @include hexa-icon('white');
+        @include hexa-icon('23fefefe');//white
         padding : rem-calc(30);
         transition: color 0.3s ease;
 
